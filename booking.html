@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Stay - Oberoi Stay Hotel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: #121212;
+            color: #f8f9fa;
+        }
+        header {
+            background: linear-gradient(135deg, #1f1f1f, #2d2d2d);
+            color: #f8f9fa;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            border-bottom: 3px solid #c59d5f;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover, nav ul li a.active {
+            color: #c59d5f;
+            border-bottom: 2px solid #c59d5f;
+        }
+        
+        .booking-section {
+            padding: 100px 20px;
+            max-width: 600px;
+            margin: auto;
+            background: #1f1f1f;
+            border: 3px solid #c59d5f;
+            margin-top: 80px;
+        }
+        .booking-section h2 {
+            color: #c59d5f;
+        }
+        .form-group {
+            margin: 15px 0;
+            text-align: left;
+        }
+        label {
+            display: block;
+            font-size: 1.2em;
+            color: #f8f9fa;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: none;
+            background: #2d2d2d;
+            color: #f8f9fa;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #121212;
+            background: #c59d5f;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #a8854a;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #c59d5f;
+        }
+        footer {
+            background: linear-gradient(135deg, #1f1f1f, #2d2d2d);
+            border-top: 3px solid #c59d5f;
+            color: #fff;
+            padding: 40px 20px;
+            font-family: Arial, sans-serif;
+        }
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+}
+
+.footer-column h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 5px;
+}
+
+.footer-column input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    background-color: transparent;
+    color: #fff;
+}
+
+.footer-column button {
+    background-color: #c59d5f;
+    color: white;
+    padding: 10px 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+.footer-column button:hover {
+    background-color: #a8854a;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Book Your Stay</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" id="home">Home</a></li>
+                <li><a href="rooms.html" id="rooms">Rooms</a></li>
+                <li><a href="booking.html" id="booking" class="active">Booking And Tariffs</a></li>
+                <li><a href="contact.html" id="contact">Contact</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="booking-section">
+        <h2>Reserve Your Luxury Stay</h2>
+        <form id="bookingForm">
+            <div class="form-group">
+                <label for="checkin">Check-in Date:</label>
+                <input type="date" id="checkin" required>
+            </div>
+            <div class="form-group">
+                <label for="checkout">Check-out Date:</label>
+                <input type="date" id="checkout" required>
+            </div>
+            <div class="form-group">
+                <label for="branch">Select Hotel Branch:</label>
+                <select id="branch" required>
+                    <option value="">-- Choose a Branch --</option>
+                    <option value="London">London - St. James' Court, An Oberoi Hotel</option>
+                    <option value="New York">New York - The Pierre, An Oberoi Hotel</option>
+                    <option value="Dubai">Dubai - Oberoi Dubai</option>
+                    <option value="Maldives">Maldives - Oberoi Exotica Resort & Spa</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="room">Select Room:</label>
+                <select id="room" required onchange="updateTariff()">
+                    <option value="">-- Choose a Room --</option>
+                    <option value="Deluxe Room">Deluxe Room</option>
+                    <option value="Executive Suite">Executive Suite</option>
+                    <option value="Luxury Suite">Luxury Suite</option>
+                    <option value="Presidential Suite">Presidential Suite</option>
+                </select>
+            </div>
+            <p id="tariff" class="message"></p>
+            
+            <div class="form-group">
+                <label for="guests">Number of Guests:</label>
+                <input type="number" id="guests" min="1" required>
+            </div>
+            <button type="button" class="btn" onclick="submitBooking()">Book Now</button>
+            <p class="message" id="message"></p>
+        </form>
+    </section>
+    
+    <script>
+const roomTariffs = {
+    "Deluxe Room": 200,
+    "Executive Suite": 350,
+    "Luxury Suite": 500,
+    "Presidential Suite": 800
+};
+
+
+function updateTariff() {
+    let room = document.getElementById('room').value;
+    let tariffMessage = document.getElementById('tariff');
+    
+    if (roomTariffs[room]) {
+        tariffMessage.innerHTML = `Tariff: $${roomTariffs[room]} per night`;
+        tariffMessage.style.color = '#c59d5f';
+    } else {
+        tariffMessage.innerHTML = "";
+    }
+}
+
+
+        function submitBooking() {
+            let checkin = document.getElementById('checkin').value;
+            let checkout = document.getElementById('checkout').value;
+            let branch = document.getElementById('branch').value;
+            let room = document.getElementById('room').value;
+            let guests = document.getElementById('guests').value;
+            let message = document.getElementById('message');
+
+            if (!checkin || !checkout || !branch || !room || !guests) {
+                message.style.color = 'red';
+                message.innerHTML = 'All fields must be filled out to proceed with booking.';
+                return;
+            }
+
+            let summary = `Booking Summary:\nCheck-in Date: ${checkin}\nCheck-out Date: ${checkout}\nBranch: ${branch}\nRoom Type: ${room}\nNumber of Guests: ${guests}\n\nConfirm booking?`;
+            let confirmBooking = confirm(summary);
+
+            if (confirmBooking) {
+                message.style.color = '#c59d5f';
+                message.innerHTML = 'Your booking has been confirmed! We look forward to welcoming you.';
+            } else {
+                message.style.color = 'red';
+                message.innerHTML = 'Booking was not confirmed. Please try again.';
+            }
+        }
+    </script>
+      <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h2>IHCL</h2>
+                <p>SUBSCRIBE FOR LATEST UPDATES</p>
+                <input type="email" placeholder="Enter your email Address">
+                <button>SUBSCRIBE</button>
+            </div>
+            
+            <div class="footer-column">
+                <h3>FOR BOOKINGS CONTACT</h3>
+                <p>1-800-111-825</p>
+                <h3>CUSTOMER SUPPORT</h3>
+                <p><a href="mailto:contactOberoi@Oberoihotels.com">contactOberoi@Oberoihotels.com</a></p>
+<p><a href="mailto:reservations@Oberoihotels.com">reservations@Oberoihotels.com</a></p>
+<p><a href="mailto:website.feedback@Oberoihotels.com">website.feedback@Oberoihotels.com</a></p>
+
+            </div>
+    
+            <div class="footer-column">
+                <h3>QUICK LINKS</h3>
+                <ul>
+                    <li>Hotels</li>
+                    <li>Dining</li>
+                    <li>Wellness</li>
+                    <li>Timeless Weddings</li>
+                    <li>Event Venues</li>
+                    <li>Oberoi Magazine</li>
+                    <li>Sitemap</li>
+                    <li>HSBC Oberoi Credit Card</li>
+                </ul>
+            </div>
+    
+            <div class="footer-column">
+                <h3>About Oberoi</h3>
+                <ul>
+                    <li>Holidays</li>
+                    <li>Offers</li>
+                    <li>Gifting</li>
+                    <li>Neupass</li>
+                    <li>Epicure</li>
+                    <li>Oberoi Blog</li>
+                </ul>
+            </div>
+    
+            <div class="footer-column">
+                <h3>CONNECT WITH US</h3>
+                <div class="social-icons">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-x-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-youtube"></i>
+                    <i class="fab fa-linkedin"></i>
+                </div>
+            </div>
+        </div>
+        <p>&copy; 2025 Oberoi Stay. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
